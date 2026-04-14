@@ -1,41 +1,41 @@
 # Agent Guide (AGENTS.md)
 
-These instructions apply to the entire `html-template` repository.
+Use this file as the execution contract for work in this template.
 
-This template is intentionally minimal. Keep changes small, obvious, and safe for public distribution.
+## Planning First
 
-## Workflow
+- Every non-trivial task must start by pruning stale or already-compressed completed noise from `PLAN.md`, then writing the current goal, background, selected validators, and todo list before editing.
+- `PLAN.md` is the source of truth for scope, order, verification, evidence, and residual risk.
+- Keep at most one todo `in_progress` per execution thread unless work was intentionally delegated in parallel.
 
-- For any non-trivial task, create or update a short written plan before editing.
-- Track verification, current status, and residual risk in that plan.
-- Do not mark work complete until the required verification has passed.
+## Checkoff Rule
 
-## Editing Rules
+- Do not check off a todo until its assigned validators have passed and the evidence is written into `PLAN.md`.
+- If verification fails, keep the todo open, record the failure, and add the corrective next step.
+- Never mark work done based on implementation alone.
 
-- Keep diffs focused. Avoid turning this template into a framework-specific starter unless explicitly requested.
-- Prefer simple HTML, CSS, and minimal JavaScript.
+## Minimum Verification Before Checkoff
+
+- `@frontend-ui-qa`: before checking off a UI or interaction todo, the touched surface must have intentional loading, empty, and error messaging where relevant, and the visual quality must fit the target audience.
+- `@cro-copy-qa`: before checking off a copy todo, rewrite against the CRO-copy standard: ICP + pain + desire, feature-to-benefit framing, and Promise / Proof / Push with short, scannable CTAs.
+
+## Validator Registry
+
+- `@frontend-ui-qa`: page structure, CTA hierarchy, interaction quality, visual states
+- `@cro-copy-qa`: headline, proof, CTA, risk-reversal, benefit-first copy
+- `@interaction-state-qa`: static interactions, anchor jumps, lightweight forms, empty/error messaging
+- `@responsive-accessibility-qa`: desktop/mobile layout, readability, contrast, keyboard reachability
+- `@performance-seo-qa`: metadata, above-the-fold clarity, asset discipline, scanability
+- `@asset-integrity-qa`: safe public assets, no broken links, no accidental local-only files
+
+## Working Rules
+
+- Keep diffs focused. Avoid turning this template into a framework-heavy starter unless explicitly requested.
+- Prefer plain HTML, CSS, and minimal JavaScript.
 - Do not add dependencies or build tooling unless explicitly requested.
+- Do not hardcode secrets or commit `.env`, caches, build output, or deployment metadata.
 - Prefer `rg` for search and read files in small chunks.
 
-## Verification
+## Handoff Format
 
-- After code changes, verify the page renders and basic interactions still work.
-- If no automated check exists, record the manual verification you performed.
-
-## Security
-
-- Do not commit `.env`, local caches, build output, or deployment metadata.
-- Keep any demo content safe for public publication.
-
-## Operational
-
-- Do not run `git commit` or create branches unless explicitly asked.
-- When unclear whether a change should stay generic or become business-specific, default to the more reusable template form.
-
----
-
-中文提示（简要）：
-
-- 这个模板应保持轻量，修改要小而明确。
-- 非简单任务先写计划。
-- 没有自动化测试时，要记录你做了什么手动验证。
+- Each validator handoff must include `Result`, `Checked`, `Passed`, `Failed`, `Not checked`, `Risk`, and `Plan update`.
